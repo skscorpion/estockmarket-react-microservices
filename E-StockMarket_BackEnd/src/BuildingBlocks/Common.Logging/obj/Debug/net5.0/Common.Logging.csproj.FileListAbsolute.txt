@@ -1,0 +1,12 @@
+E:\senthil\E-StockMarket_BackEnd\estockmarket-microservices\src\BuildingBlocks\Common.Logging\bin\Debug\net5.0\Common.Logging.deps.json
+E:\senthil\E-StockMarket_BackEnd\estockmarket-microservices\src\BuildingBlocks\Common.Logging\bin\Debug\net5.0\Common.Logging.dll
+E:\senthil\E-StockMarket_BackEnd\estockmarket-microservices\src\BuildingBlocks\Common.Logging\bin\Debug\net5.0\ref\Common.Logging.dll
+E:\senthil\E-StockMarket_BackEnd\estockmarket-microservices\src\BuildingBlocks\Common.Logging\bin\Debug\net5.0\Common.Logging.pdb
+E:\senthil\E-StockMarket_BackEnd\estockmarket-microservices\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\Common.Logging.GeneratedMSBuildEditorConfig.editorconfig
+E:\senthil\E-StockMarket_BackEnd\estockmarket-microservices\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\Common.Logging.AssemblyInfoInputs.cache
+E:\senthil\E-StockMarket_BackEnd\estockmarket-microservices\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\Common.Logging.AssemblyInfo.cs
+E:\senthil\E-StockMarket_BackEnd\estockmarket-microservices\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\Common.Logging.csproj.CoreCompileInputs.cache
+E:\senthil\E-StockMarket_BackEnd\estockmarket-microservices\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\Common.Logging.dll
+E:\senthil\E-StockMarket_BackEnd\estockmarket-microservices\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\ref\Common.Logging.dll
+E:\senthil\E-StockMarket_BackEnd\estockmarket-microservices\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\Common.Logging.pdb
+E:\senthil\E-StockMarket_BackEnd\estockmarket-microservices\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\Common.Logging.csprojAssemblyReference.cache

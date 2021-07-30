@@ -1,0 +1,99 @@
+services:
+  company.api:
+    build:
+      context: E:\senthil\git2\e-stockmarket\E-StockMarket_BackEnd\src
+      dockerfile: Services/Company/Company.API/Dockerfile
+    container_name: company.api
+    depends_on:
+      companydb:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DatabaseSettings:ConnectionString: mongodb://companydb:27017
+      ElasticConfiguration:Uri: http://elasticsearch:9200
+      EventBusSettings:HostAddress: amqp://guest:guest@rabbitmq:5672
+    image: companyapi
+    ports:
+    - published: 8000
+      target: 80
+  companydb:
+    container_name: companydb
+    image: mongo
+    ports:
+    - published: 27017
+      target: 27017
+    restart: always
+    volumes:
+    - mongo_data:/data/db:rw
+  elasticsearch:
+    container_name: elasticsearch
+    environment:
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+      discovery.type: single-node
+      xpack.monitoring.enabled: "true"
+      xpack.watcher.enabled: "false"
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    ports:
+    - published: 9200
+      target: 9200
+    volumes:
+    - elasticsearch-data:/usr/share/elasticsearch/data:rw
+  kibana:
+    container_name: kibana
+    depends_on:
+      elasticsearch:
+        condition: service_started
+    environment:
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    image: docker.elastic.co/kibana/kibana:7.9.2
+    ports:
+    - published: 5601
+      target: 5601
+  ocelotapigw:
+    build:
+      context: E:\senthil\git2\e-stockmarket\E-StockMarket_BackEnd\src
+      dockerfile: ApiGateway/OcelotApiGw/Dockerfile
+    container_name: ocelotapigw
+    depends_on:
+      company.api:
+        condition: service_started
+      stock.api:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ElasticConfiguration:Uri: http://elasticsearch:9200
+    image: ocelotapigw
+    ports:
+    - published: 8010
+      target: 80
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management-alpine
+    ports:
+    - published: 5672
+      target: 5672
+    - published: 15672
+      target: 15672
+    restart: always
+  stock.api:
+    build:
+      context: E:\senthil\git2\e-stockmarket\E-StockMarket_BackEnd\src
+      dockerfile: Services/Stock/Dockerfile
+    container_name: stock.api
+    depends_on:
+      rabbitmq:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ElasticConfiguration:Uri: http://elasticsearch:9200
+      EventBusSettings:HostAddress: amqp://guest:guest@rabbitmq:5672
+    image: stockapi
+    ports:
+    - published: 8001
+      target: 80
+version: '3.4'
+volumes:
+  elasticsearch-data: {}
+  mongo_data: {}
